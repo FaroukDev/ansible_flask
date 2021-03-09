@@ -1,6 +1,8 @@
 import logging
 import os
 import sys
+from dotenv import load_dotenv
+load_dotenv()
 
 
 from flask import (
@@ -23,10 +25,11 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    print("hello la famix")
+    
 
 
 
 if __name__ == '__main__':
     print('Connexion flask :')
-    app.run(host='0.0.0.0', port=4000, debug=True)
+    app.run(host='0.0.0.0', port=os.getenv('PORT'), debug=True)

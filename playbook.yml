@@ -1,48 +1,56 @@
 - name: configure vm 
   hosts: azure-vm
+  become: yes
+  become_method: sudo
   remote_user: farouk
   tasks:
-  - name: Creation folder/ansible_flask
-    file:
-      path: /home/farouk/ansible_flask
-      state: touch
-  - name: copy file
-    copy:
-      src: /Users/farouk/Documents/simplon/david/ansible_flask
-      dest: /home/farouk/ansible_flask
+    # - name: Creation folder/ansible_flask
+    #   file:
+    #     path: /home/farouk/ansible_flask 
+    #     state: directory
+    #     mode: '0755'
+    # - apt:
+    #     name: postgresql
+    #     state: latest
+    
+    
+        
+  #   with_items:
+  #     - bash
+  #     - openssl
+  #     - libssl-dev
+  #     - libssl-doc
+  #   tags: packages
 
-  with_items:
-    - bash
-    - openssl
-    - libssl-dev
-    - libssl-doc
-  tags: packages
+  # - name: Install PostgreSQL
+  #   apt: name={{ item }} update_cache=true state=installed
+  #   with_items:
+  #     - postgresql
+  #     - postgresql-contrib
+  #     - libpq-dev
+  #     - python
+  #     - flask
+  #     - python-psycopg2
+  #   tags: packages
+  #   - name: Ensure the PostgreSQL service is running
+  #   service: name=postgresql state=started enabled=yes
 
-- name: Install PostgreSQL
-  apt: name={{ item }} update_cache=true state=installed
-  with_items:
-    - postgresql
-    - postgresql-contrib
-    - libpq-dev
-    - python-psycopg2
-  tags: packages
-
-- name: Ensure the PostgreSQL service is running
-  service: name=postgresql state=started enabled=yes
-
-- name: Ensure database is created
-  sudo_user: user
-  postgresql_db: name=ansible_data 
-             encoding='UTF-8'
-             lc_collate='en_US.UTF-8'
-             lc_ctype='en_US.UTF-8'
-             template='template0'
-             state=present
-
-- name: Ensure user has access to the database
-  sudo_user: postgres
-  postgresql_user: db=ansible_data
-               name=user
-               password=pwd123
-               priv=ALL
-               state=present
+  # - name: Ensure database is created
+  #   sudo_user: user
+  #   postgresql_db: name=ansible_data 
+  #               encoding='UTF-8'
+  #               lc_collate='en_US.UTF-8'
+  #               lc_ctype='en_US.UTF-8'
+  #               template='template0'
+  #               state=present 
+  # - name: Ensure user has access to the database
+  #   sudo_user: postgres
+  #   postgresql_user: db=ansible_data
+  #               name=user
+  #               password=pwd123
+  #               priv=ALL
+  #               state=present
+  # sudo_user: postgres
+  # postgresql_user: name=user
+  #               role_attr_flags=NOSUPERUSER,NOCREATEDB
+  #               state=pr
