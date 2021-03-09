@@ -1,0 +1,12 @@
+- name: configure vm 
+  hosts: azure-vm
+  remote_user: farouk
+  tasks:
+  - name: Creation file
+    file:
+      path: /home/farouk/app
+      state: touch
+  - name: copy file
+    copy:
+      src: /Users/farouk/Documents/simplon/david/ansible_flask
+      dest: /home/farouk/app
