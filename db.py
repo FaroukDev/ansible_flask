@@ -1,28 +1,41 @@
 import psycopg2
-import os
-from dotenv import load_dotenv
 
-load_dotenv()
+class DB():
+    def __init__(self):
+        self.conn = self.connection_db()
+        self.createTable()
+        self.insertData()
+    def connection_db(self):
+        try:
+            conn = psycopg2.connect(host='localhost',
+                                            user='farouk',
+                                            database='postgres',
+                                            password='pw123')
+                                            
+            print("Connected to my database")
+            return conn
+        except Exception as err:
+            print("Error :",err)
 
-# Update connection string information
-conn = psycopg2.connect(
-    host=os.getenv('HOST'),
-    database=os.getenv('DB_NAME'),
-    user=os.getenv('DB_USER'),
-    password=os.getenv('DB_PW'),
-    port=os.getenv('PORT')
-    # sslmode = "require",
-    )
+    def createTable (self):
+        try:
+            sql_query = self.conn.cursor()
+            sql_query.execute("DROP TABLE users")
+            sql_query.execute("CREATE TABLE IF NOT EXISTS users (id serial PRIMARY KEY NOT NULL, nom VARCHAR(100) NOT NULL)")
+            self.conn.commit()
+        except Exception as e:
+            print("Error :", e)
+    
+    def insertData(self):
+        try:
+            sql_query = self.conn.cursor()
+            sql_query.execute("INSERT INTO users (nom) VALUES ('delpiero');")
+            sql_query.execute("INSERT INTO users (nom) VALUES ('raul ');")
+            sql_query.execute("INSERT INTO users (nom) VALUES ('Zinedine');")
+            self.conn.commit()
+        except Exception as e:
+            print("Error :", e)
 
-print("Connection established")
-
-cursor = conn.cursor()
 
 
-cursor.execute("CREATE TABLE IF NOT EXISTS users (id SERIAL, name VARCHAR(100))")
-cursor.execute("INSERT INTO users (name) values ('farouk'), ('delpiero92')")
-cursor.execute("SELECT * from users;")
-
-conn.commit()
-cursor.close()
-conn.close()
+db = DB()
