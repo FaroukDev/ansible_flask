@@ -5,11 +5,12 @@ class DB():
         self.conn = self.connection_db()
         self.createTable()
         self.insertData()
+
     def connection_db(self):
         try:
             conn = psycopg2.connect(host='localhost',
                                             user='farouk',
-                                            database='postgres',
+                                            database='messi',
                                             password='pw123')
                                             
             print("Connected to my database")
@@ -17,14 +18,13 @@ class DB():
         except Exception as err:
             print("Error :",err)
 
-    def createTable (self):
-        try:
-            sql_query = self.conn.cursor()
-            sql_query.execute("DROP TABLE users")
-            sql_query.execute("CREATE TABLE IF NOT EXISTS users (id serial PRIMARY KEY NOT NULL, nom VARCHAR(100) NOT NULL)")
-            self.conn.commit()
-        except Exception as e:
-            print("Error :", e)
+    def createTable(self):
+        print("hello")
+        sql_query = self.conn.cursor()
+        #sql_query.execute("DROP TABLE users")
+        sql_query.execute("CREATE TABLE IF NOT EXISTS users (id serial PRIMARY KEY NOT NULL, nom VARCHAR(100) NOT NULL)")
+        self.conn.commit()
+       
     
     def insertData(self):
         try:

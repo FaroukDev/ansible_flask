@@ -29,18 +29,6 @@ def showData():
     except Exception as e :
         print("Error :", e) 
 
-@app.route('/id')
-def showId():
-    conn = psycopg2.connect(host='localhost',
-                                    user='farouk',
-                                    database='postgres',
-                                    password='pw123')
-    cursor = conn.cursor()
-    cursor.execute("SELECT currval('users_id_seq')")
-    myresult = cursor.fetchall()
-    #fermeture de la base de donnée
-    conn.close()
-    return jsonify(myresult)
 
 
 if __name__ == "__main__":
