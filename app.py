@@ -37,7 +37,7 @@ def increment():
                                     database='messi',
                                     password='pw123')
         cursor = conn.cursor()
-        cursor.execute("INSERT INTO users (nom) VALUES ('simplon');")
+        cursor.execute("INSERT INTO users(nom) VALUES ('simplon');")
         result = "insertion data"
         return jsonify(result)
     except Exception as e :
