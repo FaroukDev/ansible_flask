@@ -27,6 +27,23 @@ def showData():
         conn.close()
         return jsonify(myresult)
     except Exception as e :
+        print("Error :", e)
+
+@app.route('/inc', methods=['GET', 'POST'])
+def increment():
+    try:
+        conn = psycopg2.connect(host='localhost',
+                                    user='farouk',
+                                    database='messi',
+                                    password='pw123')
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO users(nom) VARCHAR(100)")
+        print("ok")
+        myresult = cursor.fetchall()
+        #fermeture de la base de donnée
+        conn.close()
+        return jsonify(myresult)
+    except Exception as e :
         print("Error :", e) 
 
 @app.route('/id')
@@ -45,6 +62,8 @@ def showCurentId():
         return jsonify(myresult)
     except Exception as e :
         print("Error :", e) 
+
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
