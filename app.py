@@ -37,7 +37,7 @@ def increment():
                                     database='messi',
                                     password='pw123')
         cursor = conn.cursor()
-        cursor.execute("INSERT INTO users(nom) VARCHAR(100)")
+        cursor.execute("INSERT INTO users (nom) VALUES ('simplon');")
         print("ok")
         myresult = cursor.fetchall()
         #fermeture de la base de donnée
