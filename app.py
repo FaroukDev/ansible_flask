@@ -12,7 +12,7 @@ app = Flask(__name__)
 @app.route('/')
 @log
 def hello():
-     return render_template('/template/index.html')
+    return "Bienvenue à tous !"
 
 
 @app.route('/test')
