@@ -39,10 +39,11 @@ def increment():
         sql_query = conn.cursor()
         sql_query.execute("INSERT INTO users (nom) VALUES ('simplon');")
         conn.commit()
-        myresult = conn.fetchall()
+        conn.fetchall()
         #fermeture de la base de donnée
         conn.close()
-        return jsonify(myresult)
+        result = "insertion data"
+        return jsonify(result)
     except Exception as e :
         print("Error :", e) 
 
