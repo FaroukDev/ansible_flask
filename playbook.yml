@@ -35,8 +35,8 @@
           owner: "postgres"
     - name: Execute script database
       command: python3 /home/farouk/ansible_flask/db.py
-    # - name: Execute script app.py
-    #   command: python3 /home/farouk/ansible_flask/app.py
+    - name: Execute script app.py
+      command: python3 /home/farouk/ansible_flask/app.py
 
      
     
