@@ -38,8 +38,10 @@ def increment():
                                     password='pw123')
         cursor = conn.cursor()
         cursor.execute("INSERT INTO users(nom) VALUES ('simplon');")
-        result = "insertion data"
-        return jsonify(result)
+        myresult = cursor.fetchall()
+        #fermeture de la base de donnée
+        conn.close()
+        return jsonify(myresult)
     except Exception as e :
         print("Error :", e) 
 
