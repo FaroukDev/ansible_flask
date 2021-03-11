@@ -3,7 +3,6 @@
   become: yes
   become_method: sudo
   remote_user: farouk
-- hosts: azure-vm
   tasks:
     - name: clone repo
       git:
