@@ -1,4 +1,4 @@
-### ansible_flask
+### Ansible flask
 
 The goal was to create a web application with 3 routes using Flask and deploy it on an Azure virtual machine.
 It was a question of making 3 routes:
